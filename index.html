@@ -1143,106 +1143,7 @@
         <div class="container">
             <h2>Find Your Dream Home in the Philippines</h2>
             <p>Vilma Tarra Realty offers premium properties across the country with personalized service to meet your needs.</p>
-            <div class="search-box">
-                <form id="propertySearchForm" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
-                    <input type="text" id="searchLocation" placeholder="Location (e.g. Quezon City, Tagaytay)" aria-label="Search by location" autocomplete="off" list="locationSuggestions" style="min-width:180px;">
-                    <datalist id="locationSuggestions">
-                        <option value="Quezon City">
-                        <option value="Tagaytay">
-                        <option value="Alabang">
-                        <option value="Makati">
-                        <option value="Batangas">
-                        <option value="Pasig">
-                    </datalist>
-                    <select id="searchType" aria-label="Property type" style="min-width:140px;">
-                        <option value="">Property Type</option>
-                        <option value="house">House</option>
-                        <option value="condo">Condominium</option>
-                        <option value="land">Land</option>
-                        <option value="commercial">Commercial</option>
-                    </select>
-                    <select id="searchPrice" aria-label="Price range" style="min-width:140px;">
-                        <option value="">Price Range</option>
-                        <option value="1-5">₱1M - ₱5M</option>
-                        <option value="5-10">₱5M - ₱10M</option>
-                        <option value="10-20">₱10M - ₱20M</option>
-                        <option value="20+">₱20M+</option>
-                    </select>
-                    <select id="searchBedrooms" aria-label="Bedrooms" style="min-width:120px;">
-                        <option value="">Bedrooms</option>
-                        <option value="1">1+</option>
-                        <option value="2">2+</option>
-                        <option value="3">3+</option>
-                        <option value="4">4+</option>
-                        <option value="5">5+</option>
-                    </select>
-                    <button type="submit" class="btn" style="min-width:120px;"><i class="fas fa-search"></i> Search</button>
-                </form>
-                <div id="searchResults" style="margin-top:1.5rem; text-align:left; display:none;"></div>
-            </div>
         </div>
-        <script>
-            // Enhanced search: filter featured listings on the page
-            document.getElementById('propertySearchForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const location = document.getElementById('searchLocation').value.trim().toLowerCase();
-                const type = document.getElementById('searchType').value;
-                const price = document.getElementById('searchPrice').value;
-                const bedrooms = document.getElementById('searchBedrooms').value;
-
-                const cards = document.querySelectorAll('.properties-grid .card');
-                let found = 0;
-
-                cards.forEach(card => {
-                    let show = true;
-                    // Location filter
-                    if (location) {
-                        const locText = card.querySelector('.location')?.textContent.toLowerCase() || '';
-                        if (!locText.includes(location)) show = false;
-                    }
-                    // Type filter
-                    if (type) {
-                        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
-                        if (type === 'house' && !title.includes('house') && !title.includes('mansion') && !title.includes('villa') && !title.includes('townhouse')) show = false;
-                        if (type === 'condo' && !title.includes('condo')) show = false;
-                        if (type === 'land' && !title.includes('land')) show = false;
-                        if (type === 'commercial' && !title.includes('commercial')) show = false;
-                    }
-                    // Price filter
-                    if (price) {
-                        const priceText = card.querySelector('.price')?.textContent.replace(/[^\d]/g, '') || '';
-                        const priceValue = parseInt(priceText, 10);
-                        if (price === '1-5' && !(priceValue >= 1000000 && priceValue <= 5000000)) show = false;
-                        if (price === '5-10' && !(priceValue > 5000000 && priceValue <= 10000000)) show = false;
-                        if (price === '10-20' && !(priceValue > 10000000 && priceValue <= 20000000)) show = false;
-                        if (price === '20+' && !(priceValue > 20000000)) show = false;
-                    }
-                    // Bedrooms filter
-                    if (bedrooms) {
-                        const locText = card.querySelector('.location')?.textContent || '';
-                        const match = locText.match(/(\d+)\s*Bedrooms?/i);
-                        const bedCount = match ? parseInt(match[1], 10) : 0;
-                        if (bedCount < parseInt(bedrooms, 10)) show = false;
-                    }
-                    card.style.display = show ? '' : 'none';
-                    if (show) found++;
-                });
-
-                // Show results message
-                const resultsDiv = document.getElementById('searchResults');
-                resultsDiv.style.display = 'block';
-                if (found === 0) {
-                    resultsDiv.innerHTML = '<span style="color:#C2A776;font-weight:600;">No properties found matching your criteria.</span>';
-                } else {
-                    resultsDiv.innerHTML = `<span style="color:#1D1D1D;font-weight:600;">Showing ${found} result${found > 1 ? 's' : ''}.</span>`;
-                }
-                // Scroll to listings
-                const listingsSection = document.getElementById('listings');
-                if (listingsSection) {
-                    window.scrollTo({ top: listingsSection.offsetTop - 70, behavior: 'smooth' });
-                }
-            });
-        </script>
     </section>
 
     <!-- Featured Listings -->
@@ -1251,10 +1152,11 @@
             <h2 class="section-title">Featured Listings</h2>
             <p class="section-subtitle">Explore our selection of premium properties in prime locations across the Philippines</p>
             <div class="properties-grid">
-                <div class="card" onclick="showPropertyModal(1)" role="button" tabindex="0">
+                <!-- Card 1 -->
+                <div class="card" role="button" tabindex="0" aria-label="View details for Modern 3BR House" onclick="showPropertyModal(1)">
                     <div class="card-img-container">
                         <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Modern House" loading="lazy" width="400" height="220">
-                        <span class="card-badge">For Sale</span>
+                        <span class="card-badge">For Rent</span>
                     </div>
                     <div class="card-content">
                         <h3>Modern 3BR House</h3>
@@ -1262,41 +1164,41 @@
                         <p class="location">Quezon City • 180 sqm • 3 Bedrooms</p>
                         <div class="card-features">
                             <span>2 Bathrooms</span>
-                            <span>Garden</span>
-                            <span>Garage</span>
+                            <span>Landscaped Garden</span>
+                            <span>2-Car Garage</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn" onclick="event.stopPropagation(); showDetails(1)">View Details</button>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(1)">Schedule Viewing</button>
+                            <button class="btn" onclick="event.stopPropagation(); showPropertyModal(1)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); window.location.hash='#contact'">Schedule Viewing</button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="card" onclick="showPropertyModal(2)" role="button" tabindex="0">
+                <!-- Card 2 -->
+                <div class="card" role="button" tabindex="0" aria-label="View details for Elegant Family Villa" onclick="showPropertyModal(2)">
                     <div class="card-img-container">
                         <img src="https://media.vrbo.com/lodging/31000000/30230000/30220600/30220562/9c84cd56.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill" alt="Villa" loading="lazy" width="400" height="220">
-                        <span class="card-badge">For Sale</span>
+                        <span class="card-badge">For Rent</span>
                     </div>
                     <div class="card-content">
                         <h3>Elegant Family Villa</h3>
                         <span class="price">₱8,500,000</span>
                         <p class="location">Tagaytay • 350 sqm • 4 Bedrooms</p>
                         <div class="card-features">
-                            <span>Scenic View</span>
-                            <span>Pool</span>
+                            <span>Infinity Pool</span>
+                            <span>Mountain View</span>
                             <span>Fireplace</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn" onclick="event.stopPropagation(); showDetails(2)">View Details</button>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(2)">Schedule Viewing</button>
+                            <button class="btn" onclick="event.stopPropagation(); showPropertyModal(2)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); window.location.hash='#contact'">Schedule Viewing</button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="card" onclick="showPropertyModal(3)" role="button" tabindex="0">
+                <!-- Card 3 -->
+                <div class="card" role="button" tabindex="0" aria-label="View details for Luxury Mansion" onclick="showPropertyModal(3)">
                     <div class="card-img-container">
                         <img src="https://www.presello.com/wp-content/uploads/2022/06/The-Black-Heim-768x575.jpg" alt="Mansion" loading="lazy" width="400" height="220">
-                        <span class="card-badge">For Sale</span>
+                        <span class="card-badge">For Rent</span>
                     </div>
                     <div class="card-content">
                         <h3>Luxury Mansion</h3>
@@ -1304,17 +1206,17 @@
                         <p class="location">Alabang • 800 sqm • 6 Bedrooms</p>
                         <div class="card-features">
                             <span>Private Gym</span>
-                            <span>Theater</span>
-                            <span>Pool</span>
+                            <span>Home Theater</span>
+                            <span>Heated Pool</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn" onclick="event.stopPropagation(); showDetails(3)">View Details</button>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(3)">Schedule Viewing</button>
+                            <button class="btn" onclick="event.stopPropagation(); showPropertyModal(3)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); window.location.hash='#contact'">Schedule Viewing</button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="card" onclick="showPropertyModal(4)" role="button" tabindex="0">
+                <!-- Card 4 (For Rent) -->
+                <div class="card" role="button" tabindex="0" aria-label="View details for Luxury Condominium" onclick="showPropertyModal(4)">
                     <div class="card-img-container">
                         <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115" alt="Condominium" loading="lazy" width="400" height="220">
                         <span class="card-badge">For Rent</span>
@@ -1324,42 +1226,42 @@
                         <span class="price">₱85,000/month</span>
                         <p class="location">Makati • 120 sqm • 2 Bedrooms</p>
                         <div class="card-features">
-                            <span>City View</span>
-                            <span>Gym</span>
+                            <span>Skyline View</span>
+                            <span>Fitness Center</span>
                             <span>24/7 Security</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn" onclick="event.stopPropagation(); showDetails(4)">View Details</button>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(4)">Schedule Viewing</button>
+                            <button class="btn" onclick="event.stopPropagation(); showPropertyModal(4)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); window.location.hash='#contact'">Schedule Viewing</button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="card" onclick="showPropertyModal(5)" role="button" tabindex="0">
+                <!-- Card 5 -->
+                <div class="card" role="button" tabindex="0" aria-label="View details for Beachfront Property" onclick="showPropertyModal(5)">
                     <div class="card-img-container">
                         <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6" alt="Beach House" loading="lazy" width="400" height="220">
-                        <span class="card-badge">For Sale</span>
+                        <span class="card-badge">For Rent</span>
                     </div>
                     <div class="card-content">
                         <h3>Beachfront Property</h3>
                         <span class="price">₱12,500,000</span>
                         <p class="location">Batangas • 500 sqm • 3 Bedrooms</p>
                         <div class="card-features">
-                            <span>Beach Access</span>
+                            <span>Direct Beach Access</span>
                             <span>Private Dock</span>
                             <span>Outdoor Kitchen</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn" onclick="event.stopPropagation(); showDetails(5)">View Details</button>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(5)">Schedule Viewing</button>
+                            <button class="btn" onclick="event.stopPropagation(); showPropertyModal(5)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); window.location.hash='#contact'">Schedule Viewing</button>
                         </div>
                     </div>
                 </div>
-                
-                <div class="card" onclick="showPropertyModal(6)" role="button" tabindex="0">
+                <!-- Card 6 -->
+                <div class="card" role="button" tabindex="0" aria-label="View details for Modern Townhouse" onclick="showPropertyModal(6)">
                     <div class="card-img-container">
                         <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154" alt="Townhouse" loading="lazy" width="400" height="220">
-                        <span class="card-badge">For Sale</span>
+                        <span class="card-badge">For Rent</span>
                     </div>
                     <div class="card-content">
                         <h3>Modern Townhouse</h3>
@@ -1367,47 +1269,551 @@
                         <p class="location">Pasig • 150 sqm • 2 Bedrooms</p>
                         <div class="card-features">
                             <span>Gated Community</span>
-                            <span>Parking</span>
-                            <span>Near Amenities</span>
+                            <span>Covered Parking</span>
+                            <span>Near Schools</span>
                         </div>
                         <div class="card-actions">
-                            <button class="btn" onclick="event.stopPropagation(); showDetails(6)">View Details</button>
-                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(6)">Schedule Viewing</button>
+                            <button class="btn" onclick="event.stopPropagation(); showPropertyModal(6)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); window.location.hash='#contact'">Schedule Viewing</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script>
+    // Property modal data for each listing
+    const propertyModalData = [
+        {
+            // id: 1
+            images: [
+                "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
+                "https://images.unsplash.com/photo-1580587771525-78b9dba3b914",
+                "https://images.unsplash.com/photo-1564013799919-ab600027ffc6",
+                "https://images.unsplash.com/photo-1512917774080-9991f1c4c750"
+            ],
+            title: "Modern 3BR House",
+            price: "₱5,200,000",
+            description: "This beautifully designed modern house in Quezon City features 3 spacious bedrooms, 2 bathrooms, and a landscaped garden. The open-plan living area flows seamlessly to the dining and kitchen spaces, perfect for family living. Located in a quiet neighborhood with easy access to major roads, schools, and shopping centers.",
+            features: [
+                { icon: "fas fa-bed", label: "3 Bedrooms" },
+                { icon: "fas fa-bath", label: "2 Bathrooms" },
+                { icon: "fas fa-ruler-combined", label: "180 sqm Floor Area" },
+                { icon: "fas fa-car", label: "2 Car Garage" },
+                { icon: "fas fa-tree", label: "Landscaped Garden" },
+                { icon: "fas fa-utensils", label: "Modern Kitchen" }
+            ]
+        },
+        {
+            // id: 2
+            images: [
+                "https://media.vrbo.com/lodging/31000000/30230000/30220600/30220562/9c84cd56.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+                "https://images.unsplash.com/photo-1464983953574-0892a716854b",
+                "https://images.unsplash.com/photo-1507089947368-19c1da9775ae"
+            ],
+            title: "Elegant Family Villa",
+            price: "₱8,500,000",
+            description: "A stunning villa in Tagaytay with breathtaking mountain views, infinity pool, and a cozy fireplace. This 4-bedroom home is perfect for families seeking luxury and comfort in a cool climate. Enjoy spacious living areas, a gourmet kitchen, and beautifully landscaped gardens.",
+            features: [
+                { icon: "fas fa-bed", label: "4 Bedrooms" },
+                { icon: "fas fa-bath", label: "3 Bathrooms" },
+                { icon: "fas fa-swimming-pool", label: "Infinity Pool" },
+                { icon: "fas fa-mountain", label: "Mountain View" },
+                { icon: "fas fa-fire", label: "Fireplace" },
+                { icon: "fas fa-tree", label: "Landscaped Garden" }
+            ]
+        },
+        {
+            // id: 3
+            images: [
+                "https://www.presello.com/wp-content/uploads/2022/06/The-Black-Heim-768x575.jpg",
+                "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+                "https://images.unsplash.com/photo-1465101046530-73398c7f28ca",
+                "https://images.unsplash.com/photo-1507089947368-19c1da9775ae"
+            ],
+            title: "Luxury Mansion",
+            price: "₱25,000,000",
+            description: "Experience the height of luxury in this Alabang mansion. Boasting 6 bedrooms, a private gym, home theater, and a heated pool, this 800 sqm property is designed for grand living and entertaining. Premium finishes and smart home features throughout.",
+            features: [
+                { icon: "fas fa-bed", label: "6 Bedrooms" },
+                { icon: "fas fa-bath", label: "7 Bathrooms" },
+                { icon: "fas fa-dumbbell", label: "Private Gym" },
+                { icon: "fas fa-film", label: "Home Theater" },
+                { icon: "fas fa-swimming-pool", label: "Heated Pool" },
+                { icon: "fas fa-shield-alt", label: "Smart Security" }
+            ]
+        },
+        {
+            // id: 4
+            images: [
+                "https://images.unsplash.com/photo-1600585152220-90363fe7e115",
+                "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+                "https://images.unsplash.com/photo-1465101046530-73398c7f28ca",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+            ],
+            title: "Luxury Condominium",
+            price: "₱85,000/month",
+            description: "A premium 2-bedroom condo in Makati with skyline views, modern interiors, and access to a fitness center and 24/7 security. Enjoy city living at its finest, close to business districts, shopping, and dining.",
+            features: [
+                { icon: "fas fa-bed", label: "2 Bedrooms" },
+                { icon: "fas fa-bath", label: "2 Bathrooms" },
+                { icon: "fas fa-city", label: "Skyline View" },
+                { icon: "fas fa-dumbbell", label: "Fitness Center" },
+                { icon: "fas fa-shield-alt", label: "24/7 Security" },
+                { icon: "fas fa-parking", label: "Parking Included" }
+            ]
+        },
+        {
+            // id: 5
+            images: [
+                "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6",
+                "https://images.unsplash.com/photo-1464983953574-0892a716854b",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+                "https://images.unsplash.com/photo-1507089947368-19c1da9775ae"
+            ],
+            title: "Beachfront Property",
+            price: "₱12,500,000",
+            description: "Wake up to the sound of waves in this Batangas beachfront home. Features 3 bedrooms, direct beach access, a private dock, and an outdoor kitchen for entertaining. Perfect for vacations or as a rental investment.",
+            features: [
+                { icon: "fas fa-bed", label: "3 Bedrooms" },
+                { icon: "fas fa-bath", label: "2 Bathrooms" },
+                { icon: "fas fa-water", label: "Direct Beach Access" },
+                { icon: "fas fa-ship", label: "Private Dock" },
+                { icon: "fas fa-utensils", label: "Outdoor Kitchen" },
+                { icon: "fas fa-tree", label: "Tropical Garden" }
+            ]
+        },
+        {
+            // id: 6
+            images: [
+                "https://images.unsplash.com/photo-1600607688969-a5bfcd646154",
+                "https://images.unsplash.com/photo-1512917774080-9991f1c4c750",
+                "https://images.unsplash.com/photo-1465101046530-73398c7f28ca",
+                "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
+            ],
+            title: "Modern Townhouse",
+            price: "₱3,800,000",
+            description: "A stylish townhouse in Pasig, located in a gated community near top schools. 2 bedrooms, covered parking, and modern finishes make this a great starter home or investment.",
+            features: [
+                { icon: "fas fa-bed", label: "2 Bedrooms" },
+                { icon: "fas fa-bath", label: "2 Bathrooms" },
+                { icon: "fas fa-door-open", label: "Gated Community" },
+                { icon: "fas fa-parking", label: "Covered Parking" },
+                { icon: "fas fa-school", label: "Near Schools" },
+                { icon: "fas fa-wifi", label: "Fiber Internet Ready" }
+            ]
+        }
+    ];
+
+    // Show property modal with dynamic content
+    function showPropertyModal(id) {
+        const data = propertyModalData[id - 1];
+        if (!data) return;
+
+        // Build images HTML
+        let imagesHtml = '';
+        data.images.forEach((img, i) => {
+            imagesHtml += `<img src="${img}" alt="${data.title} Image ${i+1}" loading="lazy" width="300" height="200">`;
+        });
+        // First image larger
+        imagesHtml = imagesHtml.replace('height="200"', 'height="200" style="grid-column:span 2;height:200px;"');
+
+        // Build features HTML
+        let featuresHtml = '';
+        data.features.forEach(f => {
+            featuresHtml += `<div class="feature-item"><i class="${f.icon}"></i><span>${f.label}</span></div>`;
+        });
+
+        // Set modal content
+        propertyModal.querySelector('.modal-images').innerHTML = imagesHtml;
+        propertyModal.querySelector('.modal-details h3').textContent = data.title;
+        propertyModal.querySelector('.modal-price').textContent = data.price;
+        propertyModal.querySelector('.modal-description').textContent = data.description;
+        propertyModal.querySelector('.feature-list').innerHTML = featuresHtml;
+
+        // Show modal
+        propertyModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Redirect to contact section when user clicks "Schedule Viewing" or "Contact Agent" in modal
+    function scheduleViewing(id) {
+        propertyModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        // Scroll to contact section after closing modal
+        setTimeout(() => {
+            window.location.hash = '#contact';
+            // Optionally, smooth scroll if supported
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
+    }
+    function contactAgent() {
+        propertyModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        setTimeout(() => {
+            window.location.hash = '#contact';
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
+    }
+    </script>
 
     <!-- About Section -->
-    <section class="section about-section" id="about">
+    <section class="section about-section" id="about" style="background: linear-gradient(120deg, #f2f1ee 70%, #fffbe9 100%); padding-bottom: 0;">
         <div class="container">
-            <div class="about-container">
-                <div class="about-img">
-                    <img src="Vilma Tarra Real Estate.jpg" alt="About Vilma Tarra Realty" loading="lazy" width="600" height="400">
+            <div class="about-flex-modern">
+                <div class="about-img-modern">
+                    <img src="Vilma Tarra Real Estate.jpg" alt="About Vilma Tarra Realty" loading="lazy" width="420" height="320">
+                    <div class="about-img-glow-modern"></div>
                 </div>
-                <div class="about-content">
-                    <h3>About Vilma Tarra Realty</h3>
-                    <p>With over 15 years of experience in the Philippine real estate market, Vilma Tarra Realty has established itself as a trusted partner for buyers, sellers, and investors. Our founder, Vilma Tarra, brings a wealth of knowledge and a personal touch to every transaction.</p>
-                    <p>We specialize in residential and commercial properties across Metro Manila and key provincial locations. Our team of dedicated professionals is committed to providing exceptional service, transparent dealings, and expert guidance throughout your real estate journey.</p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <div class="number">15+</div>
-                            <div class="label">Years Experience</div>
+                <div class="about-content-modern">
+                    <h3>
+                        <span class="about-gradient-title-modern">About Vilma Tarra Realty</span>
+                    </h3>
+                    <p>
+                        <b>15+ years</b> of experience in Philippine real estate have made Vilma Tarra Realty a trusted partner for buyers, sellers, and investors. Our founder, <b>Vilma Tarra</b>, brings a personal touch and deep market knowledge to every transaction.
+                    </p>
+                    <p>
+                        We specialize in <b>residential</b> and <b>commercial</b> properties across Metro Manila and key provincial locations. Our dedicated team is committed to <span class="about-highlight-modern">exceptional service</span>, <span class="about-highlight-modern">transparent dealings</span>, and <span class="about-highlight-modern">expert guidance</span> throughout your real estate journey.
+                    </p>
+                    <div class="about-stats-modern">
+                        <div class="stat-item-modern">
+                            <div class="stat-icon"><i class="fas fa-award"></i></div>
+                            <div>
+                                <div class="number">15+</div>
+                                <div class="label">Years Experience</div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                            <div class="number">500+</div>
-                            <div class="label">Properties Sold</div>
+                        <div class="stat-item-modern">
+                            <div class="stat-icon"><i class="fas fa-home"></i></div>
+                            <div>
+                                <div class="number">500+</div>
+                                <div class="label">Properties Sold</div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                            <div class="number">100%</div>
-                            <div class="label">Client Satisfaction</div>
+                        <div class="stat-item-modern">
+                            <div class="stat-icon"><i class="fas fa-smile-beam"></i></div>
+                            <div>
+                                <div class="number">100%</div>
+                                <div class="label">Client Satisfaction</div>
+                            </div>
                         </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <style>
+            .about-flex-modern {
+                display: grid;
+                grid-template-columns: 1.1fr 1.6fr;
+                gap: 3.5rem;
+                align-items: center;
+            }
+            .about-img-modern {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 320px;
+                max-width: 420px;
+            }
+            .about-img-modern img {
+                border-radius: 1.7rem;
+                box-shadow: 0 8px 32px rgba(194,167,118,0.13), 0 2px 8px rgba(0,0,0,0.06);
+                width: 100%;
+                max-width: 420px;
+                object-fit: cover;
+                z-index: 2;
+                position: relative;
+            }
+            .about-img-glow-modern {
+                position: absolute;
+                inset: 0;
+                border-radius: 1.7rem;
+                z-index: 1;
+                pointer-events: none;
+                background: radial-gradient(circle at 70% 30%, #C2A77644 0%, #fff0 70%);
+                filter: blur(22px);
+            }
+            .about-content-modern {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                padding-left: 1.5rem;
+            }
+            .about-gradient-title-modern {
+                font-size: 2.5rem;
+                font-weight: 900;
+                background: linear-gradient(90deg,#C2A776 60%,#A58E5E 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                letter-spacing: 0.01em;
+                display: inline-block;
+                margin-bottom: 0.7rem;
+            }
+            .about-content-modern p {
+                font-size: 1.15rem;
+                color: #444;
+                margin-bottom: 1.1rem;
+                line-height: 1.7;
+            }
+            .about-highlight-modern {
+                color: #C2A776;
+                font-weight: 700;
+                background: #fffbe9;
+                border-radius: 0.4em;
+                padding: 0.05em 0.3em;
+            }
+            .about-stats-modern {
+                display: flex;
+                gap: 2.2rem;
+                margin: 2.2rem 0 1.2rem 0;
+                flex-wrap: wrap;
+            }
+            .stat-item-modern {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                background: #fff;
+                border-radius: 1.2rem;
+                box-shadow: 0 2px 12px rgba(194,167,118,0.09);
+                padding: 1.1rem 1.2rem;
+                min-width: 170px;
+                transition: box-shadow 0.18s, transform 0.18s;
+            }
+            .stat-item-modern:hover {
+                box-shadow: 0 8px 32px rgba(194,167,118,0.16);
+                transform: translateY(-4px) scale(1.04);
+            }
+            .stat-icon {
+                font-size: 2.1rem;
+                color: #C2A776;
+                background: #fffbe9;
+                border-radius: 50%;
+                width: 48px;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 8px rgba(194,167,118,0.08);
+            }
+            .stat-item-modern .number {
+                font-size: 1.7rem;
+                font-weight: 900;
+                color: #C2A776;
+                margin-bottom: 0.1rem;
+            }
+            .stat-item-modern .label {
+                font-size: 1.01rem;
+                color: #A58E5E;
+                letter-spacing: 0.01em;
+            }
+            .about-actions-modern {
+                margin-top: 2.2rem;
+                display: flex;
+                gap: 1.2rem;
+                flex-wrap: wrap;
+            }
+            .about-actions-modern .btn, .about-actions-modern .btn-outline {
+                min-width: 150px;
+                font-size: 1.08rem;
+            }
+            @media (max-width: 1100px) {
+                .about-flex-modern {
+                    grid-template-columns: 1fr;
+                    gap: 2.2rem;
+                }
+                .about-content-modern {
+                    padding-left: 0;
+                }
+                .about-img-modern {
+                    margin-bottom: 1.2rem;
+                    justify-content: flex-start;
+                }
+            }
+            @media (max-width: 700px) {
+                .about-gradient-title-modern {
+                    font-size: 1.4rem;
+                }
+                .about-stats-modern {
+                    flex-direction: column;
+                    gap: 1.1rem;
+                }
+                .about-img-modern img {
+                    max-width: 98vw;
+                }
+            }
+        </style>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section class="section" id="team" style="background: linear-gradient(120deg, #fffbe9 70%, #f2f1ee 100%); padding-top: 2.5rem;">
+        <div class="container">
+            <h2 class="section-title" style="color:#C2A776;">Meet the Team</h2>
+            <p class="section-subtitle" style="color:#555; max-width:600px; margin-bottom:2.5rem;">
+                Our passionate and experienced team is dedicated to helping you achieve your real estate goals.
+            </p>
+            <div class="team-grid-modern">
+                <!-- Team Member 1 -->
+                <div class="team-card-modern">
+                    <div class="team-photo-modern">
+                        <img src="Vilma Tarra Real Estate.jpg" alt="Vilma Tarra - Founder & Lead Broker" loading="lazy" width="120" height="120">
+                        <span class="team-badge-modern">Lead</span>
+                    </div>
+                    <h3>Vilma Tarra</h3>
+                    <p class="team-role-modern">Founder & Lead Broker</p>
+                    <p class="team-desc-modern">With over 15 years of experience, Vilma leads the team with integrity, expertise, and a personal touch for every client.</p>
+                    <div class="team-social-modern">
+                        <a href="mailto:vilma_tarra@yahoo.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/tarra.vilma" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="team-card-modern">
+                    <div class="team-photo-modern">
+                        <img src="Vilma Tarra Real Estate.jpg" alt="Michelle Camacho - Client Relations" loading="lazy" width="120" height="120">
+                    </div>
+                    <h3>Michelle Camacho</h3>
+                    <p class="team-role-modern">Client Relations</p>
+                    <p class="team-desc-modern">Michelle specializes in Metro Manila properties and is known for her negotiation skills and client-first approach.</p>
+                    <div class="team-social-modern">
+                        <a href="mailto:camachomichelleangela@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/camachomichelleangela" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
             </div>
         </div>
+        <style>
+            .team-grid-modern {
+                display: flex;
+                gap: 2.5rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 1.5rem;
+            }
+            .team-card-modern {
+                background: #fff;
+                border-radius: 1.5rem;
+                box-shadow: 0 8px 36px rgba(194,167,118,0.13), 0 2px 8px rgba(0,0,0,0.06);
+                padding: 2.5rem 1.5rem 1.7rem 1.5rem;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-width: 260px;
+                max-width: 340px;
+                position: relative;
+                z-index: 1;
+                border: 1.5px solid #f3f0e6;
+                transition: box-shadow 0.22s, transform 0.22s;
+            }
+            .team-card-modern:hover, .team-card-modern:focus-within {
+                box-shadow: 0 16px 48px rgba(194,167,118,0.22), 0 4px 16px rgba(0,0,0,0.09);
+                transform: translateY(-8px) scale(1.035);
+            }
+            .team-photo-modern {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 1.1rem;
+                border-radius: 50%;
+                overflow: hidden;
+                box-shadow: 0 2px 12px rgba(194,167,118,0.13);
+                background: linear-gradient(135deg,#C2A77622 60%,#fff 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+            .team-photo-modern img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+                z-index: 2;
+            }
+            .team-badge-modern {
+                position: absolute;
+                bottom: 6px;
+                right: 10px;
+                background: linear-gradient(90deg,#C2A776 60%,#A58E5E 100%);
+                color: #fff;
+                font-size: 0.78rem;
+                font-weight: 700;
+                padding: 0.22rem 0.8rem;
+                border-radius: 1rem;
+                box-shadow: 0 1px 6px rgba(194,167,118,0.13);
+                z-index: 3;
+                letter-spacing: 0.03em;
+            }
+            .team-card-modern h3 {
+                font-size: 1.22rem;
+                font-weight: 800;
+                color: #C2A776;
+                margin-bottom: 0.3rem;
+                letter-spacing: 0.01em;
+            }
+            .team-role-modern {
+                color: #A58E5E;
+                font-size: 1.01rem;
+                font-weight: 600;
+                margin-bottom: 0.7rem;
+            }
+            .team-desc-modern {
+                color: #555;
+                font-size: 0.98rem;
+                margin-bottom: 1.1rem;
+                line-height: 1.5;
+            }
+            .team-social-modern {
+                display: flex;
+                gap: 0.7rem;
+                justify-content: center;
+            }
+            .team-social-modern a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 38px;
+                height: 38px;
+                background: #f2f1ee;
+                color: #C2A776;
+                border-radius: 50%;
+                font-size: 1.1rem;
+                transition: background 0.18s, color 0.18s;
+            }
+            .team-social-modern a:hover, .team-social-modern a:focus {
+                background: #C2A776;
+                color: #fff;
+                outline: none;
+            }
+            @media (max-width: 1100px) {
+                .team-grid-modern {
+                    gap: 1.3rem;
+                }
+                .team-card-modern {
+                    padding: 1.7rem 0.9rem 1.1rem 0.9rem;
+                }
+            }
+            @media (max-width: 700px) {
+                .team-grid-modern {
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .team-card-modern {
+                    min-width: 0;
+                    width: 100%;
+                    max-width: 98vw;
+                }
+            }
+        </style>
     </section>
 
     <!-- Services Section -->
@@ -1415,52 +1821,203 @@
         <div class="container">
             <h2 class="section-title">Our Services</h2>
             <p class="section-subtitle">Comprehensive real estate solutions tailored to your needs</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
+            <div class="services-grid-better">
+                <!-- Service Card 1 -->
+                <div class="service-card-better" tabindex="0">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon-better">
                         <i class="fas fa-home"></i>
                     </div>
                     <h3>Property Sales</h3>
-                    <p>Expert assistance in buying or selling residential and commercial properties with competitive pricing and market analysis.</p>
+                    <p>Expert guidance for buying and selling residential or commercial properties, including market analysis and negotiation support.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Personalized property matching</li>
+                        <li><i class="fas fa-check-circle"></i> Professional listing photography</li>
+                        <li><i class="fas fa-check-circle"></i> Transparent transaction process</li>
+                    </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
+                <!-- Service Card 2 -->
+                <div class="service-card-better" tabindex="0">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon-better">
                         <i class="fas fa-key"></i>
                     </div>
                     <h3>Property Rental</h3>
-                    <p>Find your perfect rental property or list your unit with our professional property management services.</p>
+                    <p>Find your ideal rental or lease out your property with our end-to-end management and tenant screening services.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Wide rental network</li>
+                        <li><i class="fas fa-check-circle"></i> Tenant background checks</li>
+                        <li><i class="fas fa-check-circle"></i> Flexible lease terms</li>
+                    </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
+                <!-- Service Card 3 -->
+                <div class="service-card-better" tabindex="0">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon-better">
                         <i class="fas fa-search-dollar"></i>
                     </div>
                     <h3>Property Valuation</h3>
-                    <p>Accurate market valuations to help you make informed decisions about your property investments.</p>
+                    <p>Get accurate, data-driven valuations for your property to help you make informed investment decisions.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Market trend analysis</li>
+                        <li><i class="fas fa-check-circle"></i> On-site property assessment</li>
+                        <li><i class="fas fa-check-circle"></i> Comprehensive valuation reports</li>
+                    </ul>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-handshake"></i>
-                    </div>
-                    <h3>Investment Consulting</h3>
-                    <p>Strategic advice for property investors looking to maximize returns in the Philippine real estate market.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
-                    <h3>Legal Assistance</h3>
-                    <p>Guidance through the legal aspects of property transactions with our network of trusted legal partners.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
+                <!-- Service Card 6 -->
+                <div class="service-card-better" tabindex="0">
+                    <div class="service-card-bg"></div>
+                    <div class="service-icon-better">
                         <i class="fas fa-building"></i>
                     </div>
                     <h3>Property Management</h3>
-                    <p>Comprehensive management services for property owners including maintenance, tenant screening, and rent collection.</p>
+                    <p>Comprehensive management for property owners, including maintenance, rent collection, and tenant relations.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Regular property inspections</li>
+                        <li><i class="fas fa-check-circle"></i> Maintenance coordination</li>
+                        <li><i class="fas fa-check-circle"></i> Financial reporting</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
+    <style>
+    /* Better Services Section UI */
+    .services-grid-better {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2.5rem;
+    }
+    .service-card-better {
+        position: relative;
+        background: #fff;
+        border-radius: 1.2rem;
+        box-shadow: 0 6px 32px rgba(194,167,118,0.13), 0 2px 8px rgba(0,0,0,0.06);
+        overflow: hidden;
+        padding: 2.2rem 1.5rem 1.7rem 1.5rem;
+        transition: box-shadow 0.22s, transform 0.22s;
+        min-height: 410px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+        border: 1.5px solid #f3f0e6;
+        cursor: pointer;
+    }
+    .service-card-better:before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        left: -60px;
+        width: 180px;
+        height: 180px;
+        background: radial-gradient(circle at 40% 40%, #C2A77633 0%, #fff0 100%);
+        z-index: 0;
+    }
+    .service-card-better:after {
+        content: "";
+        position: absolute;
+        bottom: -60px;
+        right: -60px;
+        width: 160px;
+        height: 160px;
+        background: radial-gradient(circle at 60% 60%, #C2A77622 0%, #fff0 100%);
+        z-index: 0;
+    }
+    .service-card-better:hover, .service-card-better:focus {
+        box-shadow: 0 16px 48px rgba(194,167,118,0.22), 0 4px 16px rgba(0,0,0,0.09);
+        transform: translateY(-8px) scale(1.035);
+        outline: none;
+    }
+    .service-card-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, #fff 60%, #C2A77611 100%);
+        z-index: 0;
+    }
+    .service-icon-better {
+        position: relative;
+        z-index: 2;
+        margin-bottom: 1.3rem;
+        font-size: 2.8rem;
+        background: linear-gradient(135deg,#C2A77633 60%,#fff 100%);
+        border-radius: 50%;
+        width: 72px;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 12px rgba(194,167,118,0.13);
+        color: #C2A776;
+        transition: background 0.2s, color 0.2s;
+    }
+    .service-card-better:hover .service-icon-better,
+    .service-card-better:focus .service-icon-better {
+        background: linear-gradient(135deg,#C2A776 60%,#fff 100%);
+        color: #fff;
+    }
+    .service-card-better h3 {
+        position: relative;
+        z-index: 2;
+        font-size: 1.22rem;
+        font-weight: 800;
+        margin-bottom: 0.7rem;
+        color: #1D1D1D;
+        text-align: center;
+        letter-spacing: 0.01em;
+    }
+    .service-card-better p {
+        position: relative;
+        z-index: 2;
+        color: #555;
+        font-size: 1.01rem;
+        margin-bottom: 1.1rem;
+        text-align: center;
+        line-height: 1.6;
+    }
+    .service-card-better ul {
+        position: relative;
+        z-index: 2;
+        margin-top: 0.5rem;
+        padding-left: 0;
+        list-style: none;
+        width: 100%;
+    }
+    .service-card-better ul li {
+        font-size: 0.99rem;
+        color: #444;
+        margin-bottom: 0.45rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-left: 0.2rem;
+        transition: color 0.18s;
+    }
+    .service-card-better ul li i {
+        color: #C2A776;
+        font-size: 1.05em;
+        margin-right: 7px;
+    }
+    .service-card-better:hover ul li,
+    .service-card-better:focus ul li {
+        color: #C2A776;
+    }
+    @media (max-width: 900px) {
+        .service-card-better {
+            min-height: 0;
+            padding: 1.5rem 1rem 1.2rem 1rem;
+        }
+    }
+    @media (max-width: 600px) {
+        .services-grid-better {
+            gap: 1.3rem;
+        }
+        .service-card-better {
+            padding: 1.2rem 0.7rem 1rem 0.7rem;
+        }
+    }
+    </style>
 
     
 
@@ -1496,7 +2053,11 @@
                         </div>
                         <div class="contact-text">
                             <h4>Email Address</h4>
-                            <p><a href="mailto:vilma_tarra@yahoo.com">vilma_tarra@yahoo.com</a></p>
+                            <p>
+                                <a href="mailto:vilma_tarra@yahoo.com">vilma_tarra@yahoo.com</a> |
+                                <a href="mailto:camachomichelleangela@gmail.com">camachomichelleangela@gmail.com</a>
+                                <a href="mailto:vilma.tarra.realty@gmail.com"> | vilma.tarra.realty@gmail.com |</a>
+                            </p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1512,22 +2073,22 @@
                 </div>
                 <div class="contact-form">
                     <h3>Send Us a Message</h3>
-                    <form id="contactForm">
+                    <form id="contactForm" action="https://formspree.io/f/xovwerwv" method="POST">
                         <div class="form-group">
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" required>
+                            <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone">
+                            <input type="tel" id="phone" name="phone">
                         </div>
                         <div class="form-group">
                             <label for="subject">Subject</label>
-                            <select id="subject">
+                            <select id="subject" name="subject">
                                 <option value="">Select a subject</option>
                                 <option value="buying">Buying a Property</option>
                                 <option value="selling">Selling a Property</option>
@@ -1538,14 +2099,140 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
+                            <textarea id="message" name="message" required></textarea>
                         </div>
                         <button type="submit" class="btn submit-btn">Send Message</button>
+                        <div id="formStatus" style="margin-top:1rem;"></div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Improved Popup Modal OUTSIDE of the form and contact section -->
+    <div id="contactPopup" style="display:none;">
+        <div class="contact-popup-modal" role="dialog" aria-modal="true" aria-label="Thank you for contacting us!">
+            <div class="contact-popup-icon"><i class="fas fa-envelope-open-text"></i></div>
+            <div class="contact-popup-title">Thank you for contacting us!</div>
+            <div class="contact-popup-desc">We have received your message.<br>You will get a reply within 24 hours.</div>
+            <button id="okPopupBtn" class="btn" style="min-width:120px;">OK</button>
+        </div>
+    </div>
+    <style>
+    #contactPopup {
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    #contactPopup[style*="flex"] {
+        display: flex !important;
+    }
+    .contact-popup-modal {
+        background: #fff;
+        padding: 2.2rem 2.5rem 2rem 2.5rem;
+        border-radius: 1.2rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        max-width: 95vw;
+        width: 100%;
+        max-width: 400px;
+        max-height: 95vh;
+        text-align: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+        animation: fadeInUp 0.4s;
+        margin: 0 auto;
+    }
+    .contact-popup-icon {
+        font-size: 2.5rem;
+        color: #C2A776;
+        margin-bottom: 1rem;
+    }
+    .contact-popup-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.7rem;
+        color: #1D1D1D;
+    }
+    .contact-popup-desc {
+        font-size: 1.05rem;
+        color: #444;
+        margin-bottom: 1.3rem;
+    }
+    @media (max-width: 600px) {
+        .contact-popup-modal {
+            padding: 1.2rem 0.7rem 1rem 0.7rem;
+            max-width: 98vw;
+        }
+        .contact-popup-title {
+            font-size: 1.05rem;
+        }
+        .contact-popup-desc {
+            font-size: 0.98rem;
+        }
+    }
+    </style>
+    <script>
+    // AJAX Formspree handler for reliable email delivery and user feedback
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const form = e.target;
+        const statusDiv = document.getElementById('formStatus');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+
+        const data = new FormData(form);
+        try {
+            const res = await fetch(form.action, {
+                method: "POST",
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                form.reset();
+                statusDiv.innerHTML = '';
+                // Show popup
+                document.getElementById('contactPopup').style.display = 'flex';
+                // Focus OK button for accessibility
+                setTimeout(() => {
+                    document.getElementById('okPopupBtn').focus();
+                }, 200);
+            } else {
+                statusDiv.innerHTML = '<span style="color:#e74c3c;font-weight:600;">Sorry, there was a problem sending your message. Please try again later.</span>';
+            }
+        } catch {
+            statusDiv.innerHTML = '<span style="color:#e74c3c;font-weight:600;">Network error. Please try again.</span>';
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+    });
+
+    // Popup close logic
+    function closeContactPopup() {
+        document.getElementById('contactPopup').style.display = 'none';
+    }
+    document.getElementById('okPopupBtn').onclick = closeContactPopup;
+    // Also close popup on click outside or ESC
+    document.getElementById('contactPopup').addEventListener('click', function(e) {
+        if (e.target === this) closeContactPopup();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('contactPopup').style.display === 'flex') {
+            closeContactPopup();
+        }
+    });
+    </script>
 
     <!-- Property Modal -->
     <div class="modal" id="propertyModal">
@@ -1610,10 +2297,9 @@
                     <h3>Vilma Tarra Realty</h3>
                     <p>Your trusted partner in Philippine real estate. We provide personalized service and expert guidance for all your property needs.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/viltarrabroker" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="mailto:vilma.tarra.realty@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+
                     </div>
                 </div>
                 <div class="footer-col">
@@ -1626,24 +2312,48 @@
                         <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Sales</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Rental</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Valuation</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Consulting</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Management</a></li>
-                    </ul>
-                </div>
+               
                 <div class="footer-col">
                     <h3>Newsletter</h3>
                     <p>Subscribe to our newsletter for the latest property listings and market updates.</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email Address" required>
+                    <form class="newsletter-form" id="newsletterForm" autocomplete="off">
+                        <input type="email" placeholder="Your Email Address" name="email" required>
                         <button type="submit" class="btn">Subscribe</button>
                     </form>
+                    <div id="newsletterStatus" style="margin-top:0.7rem;font-size:0.97rem;"></div>
                 </div>
+                <script>
+                document.getElementById('newsletterForm').addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const form = e.target;
+                    const statusDiv = document.getElementById('newsletterStatus');
+                    const btn = form.querySelector('button[type="submit"]');
+                    btn.disabled = true;
+                    btn.innerHTML = '<span class="spinner"></span> Subscribing...';
+                    const email = form.email.value.trim();
+                 
+                    try {
+                        const res = await fetch('https://formspree.io/a/122323232', {
+                            method: 'POST',
+                            headers: { 'Accept': 'application/json' },
+                            body: new FormData(form)
+                        });
+                        if (res.ok) {
+                            form.reset();
+                            statusDiv.style.color = "#27ae60";
+                            statusDiv.textContent = "Thank you for subscribing!";
+                        } else {
+                            statusDiv.style.color = "white";
+                            statusDiv.textContent = "News Letter Feature Coming Soon. Sorry for the inconvenience.";
+                        }
+                    } catch {
+                        statusDiv.style.color = "#e74c3c";
+                        statusDiv.textContent = "Network error. Please try again.";
+                    }
+                    btn.disabled = false;
+                    btn.textContent = 'Subscribe';
+                });
+                </script>
             </div>
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear"></span> Vilma Tarra Realty. All Rights Reserved.</p>
@@ -1651,64 +2361,478 @@
         </div>
     </footer>
 
-    <!-- Chatbot -->
-    <div id="chatbot">
+    <!-- Chatbot Floating Button & Panel -->
+    <div id="chatbot-fab" aria-label="Open chatbot" tabindex="0">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div id="chatbot" aria-modal="true" role="dialog" aria-label="Real Estate Assistant">
         <div id="chatbot-header">
-            <span>Real Estate Assistant</span>
-            <button id="chatbot-toggle" aria-label="Toggle chatbot"><i class="fas fa-times"></i></button>
+            <span><i class="fas fa-robot"></i> Real Estate Assistant</span>
+            <button id="chatbot-close" aria-label="Close chatbot"><i class="fas fa-times"></i></button>
         </div>
-        <div id="chatbot-messages">
-            <div class="message bot-message">
-                Hello! I'm your real estate assistant. How can I help you today?
-            </div>
+        <div id="chatbot-messages" aria-live="polite">
+            <!-- Messages will be injected here -->
         </div>
-        <div id="chatbot-input">
-            <input type="text" placeholder="Type your message..." aria-label="Chatbot input">
-            <button aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+        <form id="chatbot-input" autocomplete="off">
+            <input type="text" id="chatbot-user-input" placeholder="Type your question..." aria-label="Type your question" />
+            <button type="submit" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+        </form>
+        <!-- Powered by GitHub Copilot with gold icon -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin:0.7rem 0 1rem 0;font-size:0.97rem;">
+            <span style="color:#C2A776;font-weight:600;">Chatbot Powered by</span>
+            <i class="fab fa-github" style="color:#C2A776;font-size:1.5rem;vertical-align:middle;"></i>
+            <span style="color:#C2A776;font-weight:700;letter-spacing:0.01em;">GitHub Copilot</span>
         </div>
     </div>
 
     <!-- Back to Top Button -->
     <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
+    <style>
+        /* Chatbot FAB and Panel Styles */
+        #chatbot-fab {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1100;
+            transition: background 0.2s;
+        }
+        #chatbot-fab:hover, #chatbot-fab:focus {
+            background: var(--primary-dark);
+            outline: none;
+        }
+        #chatbot {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 370px;
+            max-width: 95vw;
+            height: 520px;
+            max-height: 90vh;
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(30px) scale(0.98);
+            transition: opacity 0.25s, transform 0.25s;
+            z-index: 1101;
+        }
+        #chatbot.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0) scale(1);
+        }
+        #chatbot-header {
+            background: var(--dark-color);
+            color: var(--light-text);
+            padding: 1rem 1.25rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            font-size: 1.1rem;
+        }
+        #chatbot-header i.fas.fa-robot {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        #chatbot-close {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        #chatbot-close:hover, #chatbot-close:focus {
+            background: #333;
+            outline: none;
+        }
+        #chatbot-messages {
+            flex: 1;
+            padding: 1.2rem 1rem 0.5rem 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            background: #f8f9fa;
+        }
+        .message {
+            max-width: 85%;
+            padding: 0.7rem 1rem;
+            border-radius: 1.2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            word-break: break-word;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+        }
+        .user-message {
+            align-self: flex-end;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border-bottom-right-radius: 0.3rem;
+        }
+        .bot-message {
+            align-self: flex-start;
+            background: #fff;
+            color: var(--dark-color);
+            border-bottom-left-radius: 0.3rem;
+            border: 1px solid #eee;
+        }
+        .chatbot-options {
+            margin-top: 0.7rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .chatbot-option {
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 1.2rem;
+            padding: 0.4rem 1.1rem;
+            font-size: 0.97rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .chatbot-option:hover, .chatbot-option:focus {
+            background: var(--primary-dark);
+            outline: none;
+        }
+        #chatbot-input {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding: 0.7rem 1rem;
+            background: #fff;
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        #chatbot-user-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            outline: none;
+            margin-right: 0.5rem;
+            background: #f8f9fa;
+        }
+        #chatbot-input button {
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #chatbot-input button:hover, #chatbot-input button:focus {
+            background: var(--primary-dark);
+            outline: none;
+        }
+        @media (max-width: 500px) {
+            #chatbot, #chatbot-fab {
+                right: 0.5rem;
+                bottom: 0.5rem;
+            }
+            #chatbot {
+                width: 98vw;
+                min-width: 0;
+                max-width: 98vw;
+                height: 95vh;
+            }
+        }
+    </style>
+
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mainNav = document.getElementById('mainNav');
+        // --- Chatbot UI Logic ---
+        const chatbotFab = document.getElementById('chatbot-fab');
+        const chatbot = document.getElementById('chatbot');
+        const chatbotClose = document.getElementById('chatbot-close');
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInputForm = document.getElementById('chatbot-input');
+        const chatbotUserInput = document.getElementById('chatbot-user-input');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-            mobileMenuBtn.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+        // Welcome message (polite)
+        function chatbotWelcome() {
+            addBotMessage(
+                `<b>Welcome to Vilma Tarra Realty!</b><br>
+                <span style="font-size:1.05em;">😊 Thank you for visiting. I'm your friendly real estate assistant.<br>
+                How may I help you today?</span>`,
+                [
+                    { label: 'Browse Listings', value: 'listings' },
+                    { label: 'Search by Location', value: 'search-location' },
+                    { label: 'Property Pricing', value: 'pricing' },
+                    { label: 'Contact Agent', value: 'contact' },
+                    { label: 'About Us', value: 'about' }
+                ]
+            );
+        }
+
+        // Add bot message with optional options
+        function addBotMessage(text, options) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.innerHTML = text;
+            if (options && Array.isArray(options)) {
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'chatbot-options';
+                options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'chatbot-option';
+                    btn.textContent = opt.label;
+                    btn.dataset.option = opt.value;
+                    optionsDiv.appendChild(btn);
+                });
+                messageDiv.appendChild(optionsDiv);
+            }
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Add user message
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Option click handler
+        chatbotMessages.addEventListener('click', function(e) {
+            if (e.target.classList.contains('chatbot-option')) {
+                handleChatbotOption(e.target.dataset.option, e.target.textContent);
+            }
         });
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        // Handle chatbot options and logic
+        function handleChatbotOption(option, label) {
+            addUserMessage(label);
+            setTimeout(() => {
+                switch(option) {
+                    case 'listings':
+                        addBotMessage(
+                            "Here are some quick links to our featured listings. Please let me know if you want more details about any property.",
+                            [
+                                { label: 'View All Listings', value: 'goto-listings' },
+                                { label: 'Search by Location', value: 'search-location' },
+                                { label: 'Back to Menu', value: 'main-menu' }
+                            ]
+                        );
+                        break;
+                    case 'goto-listings':
+                        addBotMessage('Redirecting you to our listings section. If you need help, just let me know!');
+                        setTimeout(() => {
+                            document.querySelector('a[href="#listings"]').click();
+                        }, 900);
+                        break;
+                    case 'search-location':
+                        addBotMessage(
+                            "Which location are you interested in? Please select below or type your preferred area.",
+                            [
+                                { label: 'Quezon City', value: 'loc-quezon' },
+                                { label: 'Tagaytay', value: 'loc-tagaytay' },
+                                { label: 'Alabang', value: 'loc-alabang' },
+                                { label: 'Makati', value: 'loc-makati' },
+                                { label: 'Other', value: 'loc-other' },
+                                { label: 'Back to Menu', value: 'main-menu' }
+                            ]
+                        );
+                        break;
+                    case 'loc-quezon':
+                    case 'loc-tagaytay':
+                    case 'loc-alabang':
+                    case 'loc-makati':
+                        {
+                            const locMap = {
+                                'loc-quezon': 'Quezon City',
+                                'loc-tagaytay': 'Tagaytay',
+                                'loc-alabang': 'Alabang',
+                                'loc-makati': 'Makati'
+                            };
+                            addBotMessage(
+                                `Showing properties in <b>${locMap[option]}</b>. If you want to see more, please click below.`,
+                                [
+                                    { label: 'View Listings', value: 'goto-listings' },
+                                    { label: 'Back', value: 'search-location' }
+                                ]
+                            );
+                        }
+                        break;
+                    case 'loc-other':
+                        addBotMessage('Please type your preferred location below 👇');
+                        break;
+                    case 'pricing':
+                        addBotMessage(
+                            "Our properties range from ₱1.5M to ₱25M+. What price range are you interested in?",
+                            [
+                                { label: '₱1M - ₱5M', value: 'price-1-5' },
+                                { label: '₱5M - ₱10M', value: 'price-5-10' },
+                                { label: '₱10M - ₱20M', value: 'price-10-20' },
+                                { label: '₱20M+', value: 'price-20plus' },
+                                { label: 'Back to Menu', value: 'main-menu' }
+                            ]
+                        );
+                        break;
+                    case 'price-1-5':
+                    case 'price-5-10':
+                    case 'price-10-20':
+                    case 'price-20plus':
+                        {
+                            const priceMap = {
+                                'price-1-5': '₱1M - ₱5M',
+                                'price-5-10': '₱5M - ₱10M',
+                                'price-10-20': '₱10M - ₱20M',
+                                'price-20plus': '₱20M+'
+                            };
+                            addBotMessage(
+                                `We have several properties in the <b>${priceMap[option]}</b> range. Would you like to view them?`,
+                                [
+                                    { label: 'Yes, show me', value: 'goto-listings' },
+                                    { label: 'Back', value: 'pricing' }
+                                ]
+                            );
+                        }
+                        break;
+                    case 'contact':
+                        addBotMessage(
+                            `You can reach our agents at <b>+63 917 533 6984</b> or <a href="mailto:vilma_tarra@yahoo.com">vilma_tarra@yahoo.com</a>.<br>Would you like to send a message now?`,
+                            [
+                                { label: 'Yes, open contact form', value: 'goto-contact' },
+                                { label: 'Back to Menu', value: 'main-menu' }
+                            ]
+                        );
+                        break;
+                    case 'goto-contact':
+                        addBotMessage('Opening contact section. We look forward to assisting you!');
+                        setTimeout(() => {
+                            document.querySelector('a[href="#contact"]').click();
+                        }, 900);
+                        break;
+                    case 'about':
+                        addBotMessage(
+                            "Vilma Tarra Realty has over 15 years of experience in Philippine real estate, offering expert service for buyers, sellers, and investors. We are always happy to help you!",
+                            [
+                                { label: 'Business Hours', value: 'hours' },
+                                { label: 'Back to Menu', value: 'main-menu' }
+                            ]
+                        );
+                        break;
+                    case 'hours':
+                        addBotMessage(
+                            "Our business hours are:<br>Mon-Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 3:00 PM<br>We will respond as soon as possible during these times.",
+                            [
+                                { label: 'Back to Menu', value: 'main-menu' }
+                            ]
+                        );
+                        break;
+                    case 'main-menu':
+                    default:
+                        chatbotWelcome();
                 }
-            });
-        });
+            }, 600);
+        }
 
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
+        // Handle free text input
+        chatbotInputForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const text = chatbotUserInput.value.trim();
+            if (!text) return;
+            addUserMessage(text);
+            chatbotUserInput.value = '';
+            setTimeout(() => {
+                // Simple keyword-based responses
+                const t = text.toLowerCase();
+                if (t.includes('price') || t.match(/₱|php|million|cost|how much/)) {
+                    addBotMessage(
+                        "Our properties range from ₱1.5M to ₱25M+. Would you like to see listings in a specific price range?",
+                        [
+                            { label: '₱1M - ₱5M', value: 'price-1-5' },
+                            { label: '₱5M - ₱10M', value: 'price-5-10' },
+                            { label: '₱10M - ₱20M', value: 'price-10-20' },
+                            { label: '₱20M+', value: 'price-20plus' }
+                        ]
+                    );
+                } else if (t.includes('contact') || t.includes('agent') || t.includes('email') || t.includes('phone')) {
+                    handleChatbotOption('contact', 'Contact Agent');
+                } else if (t.includes('about') || t.includes('vilma')) {
+                    handleChatbotOption('about', 'About Us');
+                } else if (t.includes('listing') || t.includes('property') || t.includes('house') || t.includes('condo')) {
+                    handleChatbotOption('listings', 'Browse Listings');
+                } else if (t.includes('location') || t.includes('where') || t.match(/city|tagaytay|alabang|makati|batangas|pasig/i)) {
+                    handleChatbotOption('search-location', 'Search by Location');
+                } else if (t.includes('hour') || t.includes('open') || t.includes('close') || t.includes('time')) {
+                    handleChatbotOption('hours', 'Business Hours');
+                } else if (t.length < 4) {
+                    addBotMessage("Could you please provide more details? I'll do my best to assist you.");
+                } else {
+                    addBotMessage(
+                        "I'm here to help with property listings, pricing, and more. Please select an option below:",
+                        [
+                            { label: 'Browse Listings', value: 'listings' },
+                            { label: 'Search by Location', value: 'search-location' },
+                            { label: 'Property Pricing', value: 'pricing' },
+                            { label: 'Contact Agent', value: 'contact' },
+                            { label: 'About Us', value: 'about' }
+                        ]
+                    );
                 }
-            });
+            }, 700);
         });
 
+        // Show chatbot FAB after delay
+        setTimeout(() => {
+            chatbotFab.style.display = 'flex';
+        }, 2000);
+
+        // Toggle chatbot open/close
+        chatbotFab.addEventListener('click', function () {
+            chatbot.classList.add('visible');
+            chatbotUserInput.focus();
+        });
+        chatbotFab.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                chatbot.classList.add('visible');
+                chatbotUserInput.focus();
+            }
+        });
+        chatbotClose.addEventListener('click', function () {
+            chatbot.classList.remove('visible');
+            chatbotFab.focus();
+        });
+
+        // Show welcome message immediately on page load in the chatbot panel
+        document.addEventListener('DOMContentLoaded', function() {
+            chatbotWelcome();
+        });
+
+        // --- Rest of your UI scripts (back to top, modal, etc) ---
         // Back to Top Button
         const backToTopBtn = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
@@ -1725,26 +2849,18 @@
         // Property Modal
         const propertyModal = document.getElementById('propertyModal');
         const modalClose = document.getElementById('modalClose');
-
-        function showPropertyModal(id) {
-            propertyModal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-            // In a real implementation, you would fetch property data based on ID
-        }
+        // Do not redefine showPropertyModal here; use the dynamic one above
 
         modalClose.addEventListener('click', () => {
             propertyModal.classList.remove('show');
             document.body.style.overflow = 'auto';
         });
-
         window.addEventListener('click', (e) => {
             if (e.target === propertyModal) {
                 propertyModal.classList.remove('show');
                 document.body.style.overflow = 'auto';
             }
         });
-
-        // Close modal with Escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && propertyModal.classList.contains('show')) {
                 propertyModal.classList.remove('show');
@@ -1752,92 +2868,45 @@
             }
         });
 
-        // Chatbot Toggle
-        const chatbot = document.getElementById('chatbot');
-        const chatbotToggle = document.getElementById('chatbot-toggle');
-        let chatbotVisible = false;
-
-        // Show chatbot after delay
-        setTimeout(() => {
-            chatbot.classList.add('visible');
-            chatbotVisible = true;
-        }, 5000);
-
-        chatbotToggle.addEventListener('click', () => {
-            if (chatbotVisible) {
-                chatbot.classList.remove('visible');
-                chatbotToggle.innerHTML = '<i class="fas fa-comment-dots"></i>';
-            } else {
-                chatbot.classList.add('visible');
-                chatbotToggle.innerHTML = '<i class="fas fa-times"></i>';
-            }
-            chatbotVisible = !chatbotVisible;
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
 
-        // Simple chatbot functionality
-        const chatbotMessages = document.getElementById('chatbot-messages');
-        const chatbotInput = document.querySelector('#chatbot-input input');
-        const chatbotSendBtn = document.querySelector('#chatbot-input button');
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        function addBotMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message bot-message';
-            messageDiv.textContent = text;
-            chatbotMessages.appendChild(messageDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        function addUserMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message user-message';
-            messageDiv.textContent = text;
-            chatbotMessages.appendChild(messageDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        chatbotSendBtn.addEventListener('click', sendMessage);
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message) {
-                addUserMessage(message);
-                chatbotInput.value = '';
-                
-                // Simple bot responses
-                setTimeout(() => {
-                    if (message.toLowerCase().includes('property') || message.toLowerCase().includes('house') || message.toLowerCase().includes('home')) {
-                        addBotMessage('We have a wide range of properties available. Would you like me to show you our listings?');
-                    } else if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
-                        addBotMessage('Property prices vary based on location, size, and features. Our most affordable property starts at ₱1.5M. Would you like more specific pricing information?');
-                    } else if (message.toLowerCase().includes('contact') || message.toLowerCase().includes('agent')) {
-                        addBotMessage('You can reach our agents at +63 912 345 6789 or email info@vilmatarrarealty.com. Would you like me to connect you now?');
-                    } else if (message.toLowerCase().includes('thank')) {
-                        addBotMessage("You're welcome! Is there anything else I can help you with?");
-                    } else {
-                        addBotMessage('I can help you with property information, pricing, or connecting with an agent. What would you like to know?');
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.card, .service-card, .about-img, .about-content, .contact-info, .contact-form');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1s ease forwards';
+                        observer.unobserve(entry.target);
                     }
-                }, 1000);
-            }
-        }
+                });
+            }, { threshold: 0.1 });
+            elements.forEach(element => observer.observe(element));
+        };
+        window.addEventListener('load', animateOnScroll);
 
-        // Form submission handlers
-        document.getElementById('propertySearchForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Search functionality would be implemented here with backend integration');
-        });
-
+        // Contact form UX
         document.getElementById('contactForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const submitBtn = e.target.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
-            
-            // Simulate form submission
             setTimeout(() => {
                 submitBtn.textContent = 'Message Sent!';
                 setTimeout(() => {
@@ -1847,74 +2916,140 @@
                 }, 2000);
             }, 1500);
         });
+    </script>
 
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Testimonial slider functionality
-        const testimonialDots = document.querySelectorAll('.testimonial-dot');
-        let currentTestimonial = 0;
-        
-        function showTestimonial(index) {
-            // In a real implementation, this would switch between different testimonials
-            testimonialDots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-            });
-            currentTestimonial = index;
-        }
-        
-        testimonialDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showTestimonial(index));
+    <script>
+        // Initialize Font Awesome icons
+        // Prevent common shortcuts for viewing source (F12, Ctrl+U, Ctrl+S, Ctrl+Shift+I, etc.)
+        document.addEventListener('keydown', function(e) {
+            // F12
+            if (e.key === 'F12') {
+            e.preventDefault();
+            showGoldenPopup();
+            return false;
+            }
+            // Ctrl+Shift+I or Ctrl+Shift+J or Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+            e.preventDefault();
+            showGoldenPopup();
+            return false;
+            }
+            // Ctrl+U or Ctrl+S
+            if (e.ctrlKey && ['U', 'S'].includes(e.key.toUpperCase())) {
+            e.preventDefault();
+            showGoldenPopup();
+            return false;
+            }
         });
-        
-        // Auto-rotate testimonials
-        setInterval(() => {
-            const nextIndex = (currentTestimonial + 1) % testimonialDots.length;
-            showTestimonial(nextIndex);
-        }, 5000);
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showGoldenPopup();
+        });
 
-        // Lazy load images
-        if ('IntersectionObserver' in window) {
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            
-            const imageObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src || img.src;
-                        imageObserver.unobserve(img);
-                    }
-                });
+        // Golden popup logic
+        function showGoldenPopup() {
+            let popup = document.getElementById('goldenPopup');
+            if (!popup) {
+            popup = document.createElement('div');
+            popup.id = 'goldenPopup';
+            popup.innerHTML = `
+                <div class="golden-popup-modal">
+                <div class="golden-popup-icon"><i class="fas fa-lock"></i></div>
+                <div class="golden-popup-title">Action Not Allowed</div>
+                <div class="golden-popup-desc">Sorry, viewing or copying the source code is disabled on this site.</div>
+                <button id="goldenPopupBtn" class="btn" style="min-width:120px;">OK</button>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            document.getElementById('goldenPopupBtn').onclick = closeGoldenPopup;
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) closeGoldenPopup();
             });
-            
-            lazyImages.forEach(img => {
-                if (img.dataset.src) {
-                    imageObserver.observe(img);
+            document.addEventListener('keydown', function escHandler(e) {
+                if (e.key === 'Escape' && popup.style.display === 'flex') {
+                closeGoldenPopup();
                 }
             });
+            }
+            popup.style.display = 'flex';
+            setTimeout(() => {
+            document.getElementById('goldenPopupBtn').focus();
+            }, 200);
         }
+        function closeGoldenPopup() {
+            const popup = document.getElementById('goldenPopup');
+            if (popup) popup.style.display = 'none';
+        }
+        // Golden popup styles
+        (function() {
+            if (document.getElementById('goldenPopupStyle')) return;
+            const style = document.createElement('style');
+            style.id = 'goldenPopupStyle';
+            style.innerHTML = `
+            #goldenPopup {
+                position: fixed;
+                z-index: 99999;
+                left: 0; top: 0;
+                width: 100vw; height: 100vh;
+                background: rgba(194,167,118,0.18);
+                display: none;
+                align-items: center;
+                justify-content: center;
+            }
+            .golden-popup-modal {
+                background: linear-gradient(120deg,#fffbe9 80%,#c2a77622 100%);
+                border: 2.5px solid #C2A776;
+                border-radius: 1.2rem;
+                box-shadow: 0 8px 32px #c2a77655;
+                padding: 2.2rem 2.5rem 2rem 2.5rem;
+                max-width: 95vw;
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                animation: fadeInUp 0.4s;
+            }
+            .golden-popup-icon {
+                font-size: 2.5rem;
+                color: #C2A776;
+                margin-bottom: 1rem;
+            }
+            .golden-popup-title {
+                font-size: 1.25rem;
+                font-weight: 700;
+                margin-bottom: 0.7rem;
+                color: #C2A776;
+            }
+            .golden-popup-desc {
+                font-size: 1.05rem;
+                color: #444;
+                margin-bottom: 1.3rem;
+            }
+            @media (max-width: 600px) {
+                .golden-popup-modal {
+                padding: 1.2rem 0.7rem 1rem 0.7rem;
+                max-width: 98vw;
+                }
+                .golden-popup-title {
+                font-size: 1.05rem;
+                }
+                .golden-popup-desc {
+                font-size: 0.98rem;
+                }
+            }
+            `;
+            document.head.appendChild(style);
+        })();
 
-        // Animate elements when they come into view
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.card, .service-card, .about-img, .about-content, .contact-info, .contact-form');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animation = 'fadeIn 1s ease forwards';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
+        document.addEventListener('DOMContentLoaded', () => {
+            const icons = document.querySelectorAll('.fas, .fab');
+            icons.forEach(icon => {
+            icon.classList.add('fa-initialized');
             });
-            
-            elements.forEach(element => {
-                observer.observe(element);
-            });
-        };
-
-        window.addEventListener('load', animateOnScroll);
+        });
     </script>
 </body>
 </html>
