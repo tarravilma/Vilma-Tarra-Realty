@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vilma Tarra Realty - Your Trusted Real Estate Partner</title>
+    <meta name="description" content="Find your dream home in the Philippines with Vilma Tarra Realty. Premium properties with personalized service across Metro Manila and key provincial locations.">
+    <meta name="keywords" content="real estate, Philippines, property, home for sale, condo, house and lot, Vilma Tarra">
+    
+    <!-- Preload important resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    <link rel="preload" href="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" as="image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="Vilma Tarra Real Estate.jpg" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* CSS Reset with improved defaults */
+        :root {
+            --primary-color: #C2A776;
+            --primary-dark: #A58E5E;
+            --secondary-color: #F2F1EE;
+            --dark-color: #1D1D1D;
+            --text-color: #1D1D1D;
+            --light-text: #F2F1EE;
+            --border-radius: 0.5rem;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            overflow-x: hidden;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+        
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--dark-color);
+            padding: 1rem 2rem;
+            color: var(--light-text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        nav a {
+            color: var(--light-text);
+            margin-left: 1.5rem;
+            font-weight: 600;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 6rem 2rem;
+            background: linear-gradient(rgba(29, 29, 29, 0.9), rgba(29, 29, 29, 0.9)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+            color: var(--light-text);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .hero .container {
+            max-width: 1000px;
+        }
+        
+        .hero h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.2rem);
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: #555;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+        }
+        
+        /* Properties Section */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .card-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 220px;
+        }
+        
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+            color: var(--dark-color);
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        
+        .card-content p.location {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-features span {
+            background: rgba(194, 167, 118, 0.1);
+            color: var(--primary-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .card-actions .btn {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .card-actions .btn-outline {
+            border-color: #ddd;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: #e9ecef;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .about-content h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-item .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-item .label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .service-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: #f1f8ff;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: #444;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            quotes: '"' '"' "'" "'";
+        }
+        
+        .testimonial-text::before {
+            content: open-quote;
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            left: -10px;
+            top: -10px;
+        }
+        
+        .testimonial-text::after {
+            content: close-quote;
+            font-size: 2rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            right: -10px;
+            bottom: -20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--dark-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonial dots */
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            gap: 0.5rem;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .testimonial-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-text p,
+        .contact-text a {
+            color: #555;
+            font-size: 1rem;
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #444;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(194, 167, 118, 0.25);
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            padding: 1rem;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #ccc;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .modal-close:hover {
+            background: #999;
+            color: white;
+        }
+        
+        .modal-property {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .modal-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        
+        .modal-images img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .modal-images img:hover {
+            opacity: 0.9;
+        }
+        
+        .modal-images img:first-child {
+            grid-column: span 2;
+            height: 200px;
+        }
+        
+        .modal-details h3 {
+            font-size: clamp(1.5rem, 3vw, 1.8rem);
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .modal-price {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .modal-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .modal-features {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-features h4 {
+            margin-bottom: 0.75rem;
+            color: var(--dark-color);
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-item i {
+            color: var(--primary-color);
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-text);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .footer-col p {
+            color: #adb5bd;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-links i {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #495057;
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            color: var(--dark-color);
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #495057;
+            border-radius: var(--border-radius);
+            background: #495057;
+            color: white;
+        }
+        
+        .newsletter-form input::placeholder {
+            color: #adb5bd;
+        }
+        
+        .newsletter-form button {
+            padding: 0 1.5rem;
+            white-space: nowrap;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* Chatbot */
+        #chatbot {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: white;
+            width: 100%;
+            max-width: 350px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        #chatbot.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        #chatbot-header {
+            background-color: var(--dark-color);
+            color: var(--light-text);
+            padding: 1rem;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        #chatbot-toggle {
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        
+        #chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: var(--dark-color);
+            color: var(--light-text);
+            border-bottom-right-radius: 0.25rem;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+            background: rgba(194, 167, 118, 0.1);
+            color: var(--dark-color);
+            border-bottom-left-radius: 0.25rem;
+        }
+        
+        #chatbot-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 0.75rem;
+        }
+        
+        #chatbot-input input {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        
+        #chatbot-input button {
+            background-color: var(--dark-color);
+            border: none;
+            color: var(--light-text);
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        #chatbot-input button:hover {
+            background-color: var(--primary-color);
+            color: var(--dark-color);
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 5rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+        
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--dark-color);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                clip-path: circle(0px at 90% -10%);
+                transition: all 0.5s ease-out;
+                pointer-events: none;
+            }
+        
+            nav.active {
+                clip-path: circle(1500px at 90% -10%);
+                pointer-events: all;
+            }
+        
+            nav a {
+                margin: 0.75rem 0;
+                font-size: 1.2rem;
+            }
+        
+            .mobile-menu-btn {
+                display: block;
+            }
+        
+            .hero {
+                padding: 4rem 1rem;
+            }
+        
+            .modal-actions {
+                flex-direction: column;
+            }
+        
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .section {
+                padding: 3rem 0;
+            }
+        
+            .card-actions {
+                flex-direction: column;
+            }
+        
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="Vilma Tarra Real Estate.jpg" alt="Vilma Tarra Realty Logo" width="40" height="40">
+            <h1>Vilma Tarra Realty</h1>
+        </div>
+        <nav id="mainNav">
+            <a href="#home">Home</a>
+            <a href="#listings">Listings</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Find Your Dream Home in the Philippines</h2>
+            <p>Vilma Tarra Realty offers premium properties across the country with personalized service to meet your needs.</p>
+            <div class="search-box">
+                <form id="propertySearchForm" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">
+                    <input type="text" id="searchLocation" placeholder="Location (e.g. Quezon City, Tagaytay)" aria-label="Search by location" autocomplete="off" list="locationSuggestions" style="min-width:180px;">
+                    <datalist id="locationSuggestions">
+                        <option value="Quezon City">
+                        <option value="Tagaytay">
+                        <option value="Alabang">
+                        <option value="Makati">
+                        <option value="Batangas">
+                        <option value="Pasig">
+                    </datalist>
+                    <select id="searchType" aria-label="Property type" style="min-width:140px;">
+                        <option value="">Property Type</option>
+                        <option value="house">House</option>
+                        <option value="condo">Condominium</option>
+                        <option value="land">Land</option>
+                        <option value="commercial">Commercial</option>
+                    </select>
+                    <select id="searchPrice" aria-label="Price range" style="min-width:140px;">
+                        <option value="">Price Range</option>
+                        <option value="1-5">₱1M - ₱5M</option>
+                        <option value="5-10">₱5M - ₱10M</option>
+                        <option value="10-20">₱10M - ₱20M</option>
+                        <option value="20+">₱20M+</option>
+                    </select>
+                    <select id="searchBedrooms" aria-label="Bedrooms" style="min-width:120px;">
+                        <option value="">Bedrooms</option>
+                        <option value="1">1+</option>
+                        <option value="2">2+</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                        <option value="5">5+</option>
+                    </select>
+                    <button type="submit" class="btn" style="min-width:120px;"><i class="fas fa-search"></i> Search</button>
+                </form>
+                <div id="searchResults" style="margin-top:1.5rem; text-align:left; display:none;"></div>
+            </div>
+        </div>
+        <script>
+            // Enhanced search: filter featured listings on the page
+            document.getElementById('propertySearchForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const location = document.getElementById('searchLocation').value.trim().toLowerCase();
+                const type = document.getElementById('searchType').value;
+                const price = document.getElementById('searchPrice').value;
+                const bedrooms = document.getElementById('searchBedrooms').value;
+
+                const cards = document.querySelectorAll('.properties-grid .card');
+                let found = 0;
+
+                cards.forEach(card => {
+                    let show = true;
+                    // Location filter
+                    if (location) {
+                        const locText = card.querySelector('.location')?.textContent.toLowerCase() || '';
+                        if (!locText.includes(location)) show = false;
+                    }
+                    // Type filter
+                    if (type) {
+                        const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                        if (type === 'house' && !title.includes('house') && !title.includes('mansion') && !title.includes('villa') && !title.includes('townhouse')) show = false;
+                        if (type === 'condo' && !title.includes('condo')) show = false;
+                        if (type === 'land' && !title.includes('land')) show = false;
+                        if (type === 'commercial' && !title.includes('commercial')) show = false;
+                    }
+                    // Price filter
+                    if (price) {
+                        const priceText = card.querySelector('.price')?.textContent.replace(/[^\d]/g, '') || '';
+                        const priceValue = parseInt(priceText, 10);
+                        if (price === '1-5' && !(priceValue >= 1000000 && priceValue <= 5000000)) show = false;
+                        if (price === '5-10' && !(priceValue > 5000000 && priceValue <= 10000000)) show = false;
+                        if (price === '10-20' && !(priceValue > 10000000 && priceValue <= 20000000)) show = false;
+                        if (price === '20+' && !(priceValue > 20000000)) show = false;
+                    }
+                    // Bedrooms filter
+                    if (bedrooms) {
+                        const locText = card.querySelector('.location')?.textContent || '';
+                        const match = locText.match(/(\d+)\s*Bedrooms?/i);
+                        const bedCount = match ? parseInt(match[1], 10) : 0;
+                        if (bedCount < parseInt(bedrooms, 10)) show = false;
+                    }
+                    card.style.display = show ? '' : 'none';
+                    if (show) found++;
+                });
+
+                // Show results message
+                const resultsDiv = document.getElementById('searchResults');
+                resultsDiv.style.display = 'block';
+                if (found === 0) {
+                    resultsDiv.innerHTML = '<span style="color:#C2A776;font-weight:600;">No properties found matching your criteria.</span>';
+                } else {
+                    resultsDiv.innerHTML = `<span style="color:#1D1D1D;font-weight:600;">Showing ${found} result${found > 1 ? 's' : ''}.</span>`;
+                }
+                // Scroll to listings
+                const listingsSection = document.getElementById('listings');
+                if (listingsSection) {
+                    window.scrollTo({ top: listingsSection.offsetTop - 70, behavior: 'smooth' });
+                }
+            });
+        </script>
+    </section>
+
+    <!-- Featured Listings -->
+    <section class="section" id="listings">
+        <div class="container">
+            <h2 class="section-title">Featured Listings</h2>
+            <p class="section-subtitle">Explore our selection of premium properties in prime locations across the Philippines</p>
+            <div class="properties-grid">
+                <div class="card" onclick="showPropertyModal(1)" role="button" tabindex="0">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Modern House" loading="lazy" width="400" height="220">
+                        <span class="card-badge">For Sale</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Modern 3BR House</h3>
+                        <span class="price">₱5,200,000</span>
+                        <p class="location">Quezon City • 180 sqm • 3 Bedrooms</p>
+                        <div class="card-features">
+                            <span>2 Bathrooms</span>
+                            <span>Garden</span>
+                            <span>Garage</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn" onclick="event.stopPropagation(); showDetails(1)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(1)">Schedule Viewing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="showPropertyModal(2)" role="button" tabindex="0">
+                    <div class="card-img-container">
+                        <img src="https://media.vrbo.com/lodging/31000000/30230000/30220600/30220562/9c84cd56.jpg?impolicy=resizecrop&rw=575&rh=575&ra=fill" alt="Villa" loading="lazy" width="400" height="220">
+                        <span class="card-badge">For Sale</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Elegant Family Villa</h3>
+                        <span class="price">₱8,500,000</span>
+                        <p class="location">Tagaytay • 350 sqm • 4 Bedrooms</p>
+                        <div class="card-features">
+                            <span>Scenic View</span>
+                            <span>Pool</span>
+                            <span>Fireplace</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn" onclick="event.stopPropagation(); showDetails(2)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(2)">Schedule Viewing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="showPropertyModal(3)" role="button" tabindex="0">
+                    <div class="card-img-container">
+                        <img src="https://www.presello.com/wp-content/uploads/2022/06/The-Black-Heim-768x575.jpg" alt="Mansion" loading="lazy" width="400" height="220">
+                        <span class="card-badge">For Sale</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Luxury Mansion</h3>
+                        <span class="price">₱25,000,000</span>
+                        <p class="location">Alabang • 800 sqm • 6 Bedrooms</p>
+                        <div class="card-features">
+                            <span>Private Gym</span>
+                            <span>Theater</span>
+                            <span>Pool</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn" onclick="event.stopPropagation(); showDetails(3)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(3)">Schedule Viewing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="showPropertyModal(4)" role="button" tabindex="0">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115" alt="Condominium" loading="lazy" width="400" height="220">
+                        <span class="card-badge">For Rent</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Luxury Condominium</h3>
+                        <span class="price">₱85,000/month</span>
+                        <p class="location">Makati • 120 sqm • 2 Bedrooms</p>
+                        <div class="card-features">
+                            <span>City View</span>
+                            <span>Gym</span>
+                            <span>24/7 Security</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn" onclick="event.stopPropagation(); showDetails(4)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(4)">Schedule Viewing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="showPropertyModal(5)" role="button" tabindex="0">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6" alt="Beach House" loading="lazy" width="400" height="220">
+                        <span class="card-badge">For Sale</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Beachfront Property</h3>
+                        <span class="price">₱12,500,000</span>
+                        <p class="location">Batangas • 500 sqm • 3 Bedrooms</p>
+                        <div class="card-features">
+                            <span>Beach Access</span>
+                            <span>Private Dock</span>
+                            <span>Outdoor Kitchen</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn" onclick="event.stopPropagation(); showDetails(5)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(5)">Schedule Viewing</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card" onclick="showPropertyModal(6)" role="button" tabindex="0">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154" alt="Townhouse" loading="lazy" width="400" height="220">
+                        <span class="card-badge">For Sale</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Modern Townhouse</h3>
+                        <span class="price">₱3,800,000</span>
+                        <p class="location">Pasig • 150 sqm • 2 Bedrooms</p>
+                        <div class="card-features">
+                            <span>Gated Community</span>
+                            <span>Parking</span>
+                            <span>Near Amenities</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn" onclick="event.stopPropagation(); showDetails(6)">View Details</button>
+                            <button class="btn btn-outline" onclick="event.stopPropagation(); scheduleViewing(6)">Schedule Viewing</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-img">
+                    <img src="Vilma Tarra Real Estate.jpg" alt="About Vilma Tarra Realty" loading="lazy" width="600" height="400">
+                </div>
+                <div class="about-content">
+                    <h3>About Vilma Tarra Realty</h3>
+                    <p>With over 15 years of experience in the Philippine real estate market, Vilma Tarra Realty has established itself as a trusted partner for buyers, sellers, and investors. Our founder, Vilma Tarra, brings a wealth of knowledge and a personal touch to every transaction.</p>
+                    <p>We specialize in residential and commercial properties across Metro Manila and key provincial locations. Our team of dedicated professionals is committed to providing exceptional service, transparent dealings, and expert guidance throughout your real estate journey.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="number">15+</div>
+                            <div class="label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">500+</div>
+                            <div class="label">Properties Sold</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">100%</div>
+                            <div class="label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Comprehensive real estate solutions tailored to your needs</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Property Sales</h3>
+                    <p>Expert assistance in buying or selling residential and commercial properties with competitive pricing and market analysis.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Property Rental</h3>
+                    <p>Find your perfect rental property or list your unit with our professional property management services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Property Valuation</h3>
+                    <p>Accurate market valuations to help you make informed decisions about your property investments.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Investment Consulting</h3>
+                    <p>Strategic advice for property investors looking to maximize returns in the Philippine real estate market.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Legal Assistance</h3>
+                    <p>Guidance through the legal aspects of property transactions with our network of trusted legal partners.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Property Management</h3>
+                    <p>Comprehensive management services for property owners including maintenance, tenant screening, and rent collection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">Get in touch for personalized real estate assistance</p>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Office Address</h4>
+                            <p>179 Aguirre Ave, Paranaque City, 1720 Metro Manila</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Phone Numbers</h4>
+                            <p>+63 917 533 6984 (Globe)</p>
+                            <p>(02) 885423220 (PLDT)</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:vilma_tarra@yahoo.com">vilma_tarra@yahoo.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Business Hours</h4>
+                            <p>Monday to Friday: 9:00 AM - 6:00 PM</p>
+                            <p>Saturday: 10:00 AM - 3:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject">
+                                <option value="">Select a subject</option>
+                                <option value="buying">Buying a Property</option>
+                                <option value="selling">Selling a Property</option>
+                                <option value="renting">Renting a Property</option>
+                                <option value="valuation">Property Valuation</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Modal -->
+    <div class="modal" id="propertyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+            <div class="modal-property">
+                <div class="modal-images">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994" alt="Modern House - Living Room" loading="lazy" width="600" height="400">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Modern House - Kitchen" loading="lazy" width="300" height="200">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6" alt="Modern House - Bedroom" loading="lazy" width="300" height="200">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750" alt="Modern House - Garden" loading="lazy" width="300" height="200">
+                </div>
+                <div class="modal-details">
+                    <h3>Modern 3BR House</h3>
+                    <p class="modal-price">₱5,200,000</p>
+                    <p class="modal-description">
+                        This beautifully designed modern house in Quezon City features 3 spacious bedrooms, 2 bathrooms, and a landscaped garden. The open-plan living area flows seamlessly to the dining and kitchen spaces, perfect for family living. Located in a quiet neighborhood with easy access to major roads, schools, and shopping centers.
+                    </p>
+                    <div class="modal-features">
+                        <h4>Property Features</h4>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="fas fa-bed"></i>
+                                <span>3 Bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-bath"></i>
+                                <span>2 Bathrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>180 sqm Floor Area</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-car"></i>
+                                <span>2 Car Garage</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-tree"></i>
+                                <span>Landscaped Garden</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-utensils"></i>
+                                <span>Modern Kitchen</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button class="btn" onclick="scheduleViewing(1)">Schedule Viewing</button>
+                        <button class="btn btn-outline" onclick="contactAgent()">Contact Agent</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Vilma Tarra Realty</h3>
+                    <p>Your trusted partner in Philippine real estate. We provide personalized service and expert guidance for all your property needs.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#listings"><i class="fas fa-chevron-right"></i> Listings</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Sales</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Rental</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Valuation</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Investment Consulting</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest property listings and market updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Vilma Tarra Realty. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div id="chatbot">
+        <div id="chatbot-header">
+            <span>Real Estate Assistant</span>
+            <button id="chatbot-toggle" aria-label="Toggle chatbot"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chatbot-messages">
+            <div class="message bot-message">
+                Hello! I'm your real estate assistant. How can I help you today?
+            </div>
+        </div>
+        <div id="chatbot-input">
+            <input type="text" placeholder="Type your message..." aria-label="Chatbot input">
+            <button aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+            mobileMenuBtn.setAttribute('aria-expanded', mainNav.classList.contains('active'));
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Property Modal
+        const propertyModal = document.getElementById('propertyModal');
+        const modalClose = document.getElementById('modalClose');
+
+        function showPropertyModal(id) {
+            propertyModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+            // In a real implementation, you would fetch property data based on ID
+        }
+
+        modalClose.addEventListener('click', () => {
+            propertyModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === propertyModal) {
+                propertyModal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && propertyModal.classList.contains('show')) {
+                propertyModal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Chatbot Toggle
+        const chatbot = document.getElementById('chatbot');
+        const chatbotToggle = document.getElementById('chatbot-toggle');
+        let chatbotVisible = false;
+
+        // Show chatbot after delay
+        setTimeout(() => {
+            chatbot.classList.add('visible');
+            chatbotVisible = true;
+        }, 5000);
+
+        chatbotToggle.addEventListener('click', () => {
+            if (chatbotVisible) {
+                chatbot.classList.remove('visible');
+                chatbotToggle.innerHTML = '<i class="fas fa-comment-dots"></i>';
+            } else {
+                chatbot.classList.add('visible');
+                chatbotToggle.innerHTML = '<i class="fas fa-times"></i>';
+            }
+            chatbotVisible = !chatbotVisible;
+        });
+
+        // Simple chatbot functionality
+        const chatbotMessages = document.getElementById('chatbot-messages');
+        const chatbotInput = document.querySelector('#chatbot-input input');
+        const chatbotSendBtn = document.querySelector('#chatbot-input button');
+
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.textContent = text;
+            chatbotMessages.appendChild(messageDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        chatbotSendBtn.addEventListener('click', sendMessage);
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        function sendMessage() {
+            const message = chatbotInput.value.trim();
+            if (message) {
+                addUserMessage(message);
+                chatbotInput.value = '';
+                
+                // Simple bot responses
+                setTimeout(() => {
+                    if (message.toLowerCase().includes('property') || message.toLowerCase().includes('house') || message.toLowerCase().includes('home')) {
+                        addBotMessage('We have a wide range of properties available. Would you like me to show you our listings?');
+                    } else if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
+                        addBotMessage('Property prices vary based on location, size, and features. Our most affordable property starts at ₱1.5M. Would you like more specific pricing information?');
+                    } else if (message.toLowerCase().includes('contact') || message.toLowerCase().includes('agent')) {
+                        addBotMessage('You can reach our agents at +63 912 345 6789 or email info@vilmatarrarealty.com. Would you like me to connect you now?');
+                    } else if (message.toLowerCase().includes('thank')) {
+                        addBotMessage("You're welcome! Is there anything else I can help you with?");
+                    } else {
+                        addBotMessage('I can help you with property information, pricing, or connecting with an agent. What would you like to know?');
+                    }
+                }, 1000);
+            }
+        }
+
+        // Form submission handlers
+        document.getElementById('propertySearchForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Search functionality would be implemented here with backend integration');
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.textContent = 'Message Sent!';
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Testimonial slider functionality
+        const testimonialDots = document.querySelectorAll('.testimonial-dot');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(index) {
+            // In a real implementation, this would switch between different testimonials
+            testimonialDots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            currentTestimonial = index;
+        }
+        
+        testimonialDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showTestimonial(index));
+        });
+        
+        // Auto-rotate testimonials
+        setInterval(() => {
+            const nextIndex = (currentTestimonial + 1) % testimonialDots.length;
+            showTestimonial(nextIndex);
+        }, 5000);
+
+        // Lazy load images
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => {
+                if (img.dataset.src) {
+                    imageObserver.observe(img);
+                }
+            });
+        }
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.card, .service-card, .about-img, .about-content, .contact-info, .contact-form');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1s ease forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
