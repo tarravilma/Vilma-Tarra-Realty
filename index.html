@@ -2664,7 +2664,8 @@
             background: var(--primary-dark);
             outline: none;
         }
-        @media (max-width: 500px) {
+        /* --- Mobile improvements --- */
+        @media (max-width: 600px) {
             #chatbot, #chatbot-fab {
                 right: 0.5rem;
                 bottom: 0.5rem;
@@ -2673,7 +2674,36 @@
                 width: 98vw;
                 min-width: 0;
                 max-width: 98vw;
-                height: 95vh;
+                height: 80vh;
+                max-height: 80vh;
+                border-radius: 1rem 1rem 0 0;
+                left: 1vw;
+                right: 1vw;
+                bottom: 0;
+                top: auto;
+            }
+            #chatbot.visible {
+                opacity: 1;
+                pointer-events: all;
+                transform: translateY(0) scale(1);
+            }
+            #chatbot-header {
+                border-radius: 1rem 1rem 0 0;
+            }
+            #chatbot-input {
+                border-radius: 0 0 1rem 1rem;
+            }
+        }
+        @media (max-width: 400px) {
+            #chatbot {
+                width: 100vw;
+                max-width: 100vw;
+                left: 0;
+                right: 0;
+                border-radius: 0;
+            }
+            #chatbot-header, #chatbot-input {
+                border-radius: 0;
             }
         }
     </style>
@@ -2759,6 +2789,9 @@
                         addBotMessage('Redirecting you to our listings section. If you need help, just let me know!');
                         setTimeout(() => {
                             document.querySelector('a[href="#listings"]').click();
+                            setTimeout(() => {
+                                addBotMessage('Thank you! You may close this chatbot now to see the <b>Listings</b> page.');
+                            }, 800);
                         }, 900);
                         break;
                     case 'search-location':
@@ -2842,6 +2875,9 @@
                         addBotMessage('Opening contact section. We look forward to assisting you!');
                         setTimeout(() => {
                             document.querySelector('a[href="#contact"]').click();
+                            setTimeout(() => {
+                                addBotMessage('Thank you! You may close this chatbot now to see the <b>Contact</b> page.');
+                            }, 800);
                         }, 900);
                         break;
                     case 'about':
