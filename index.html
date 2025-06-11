@@ -6,6 +6,105 @@
     <title>Vilma Tarra Realty - Your Trusted Real Estate Partner</title>
     <meta name="description" content="Find your dream home in the Philippines with Vilma Tarra Realty. Premium properties with personalized service across Metro Manila and key provincial locations.">
     <meta name="keywords" content="real estate, Philippines, property, home for sale, condo, house and lot, Vilma Tarra">
+
+    <!-- Logo Loader with Animated Circle -->
+    <style>
+        #site-loader {
+            position: fixed;
+            z-index: 99999;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: linear-gradient(120deg, #f2f1ee 70%, #fffbe9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s;
+        }
+        #site-loader.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .logo-loader-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-loader-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 24px #c2a77633;
+            position: relative;
+            z-index: 2;
+            background: #fff;
+        }
+        .logo-loader-circle {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 150px;
+            height: 150px;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .logo-loader-svg {
+            width: 150px;
+            height: 150px;
+            display: block;
+        }
+        .logo-loader-svg circle {
+            fill: none;
+            stroke: #C2A776;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 439.82;
+            stroke-dashoffset: 329.86;
+            /* 75% of circle is visible, rest is gap */
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            animation: logo-circle-spin 1.2s linear infinite;
+            filter: drop-shadow(0 2px 12px #c2a77655);
+        }
+        @keyframes logo-circle-spin {
+            0% {
+                stroke-dashoffset: 329.86;
+                transform: rotate(-90deg);
+            }
+            50% {
+                stroke-dashoffset: 109.96;
+                transform: rotate(270deg);
+            }
+            100% {
+                stroke-dashoffset: 329.86;
+                transform: rotate(630deg);
+            }
+        }
+    </style>
+    <script>
+        // Hide loader after page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loader = document.getElementById('site-loader');
+                if (loader) {
+                    loader.classList.add('hide');
+                    setTimeout(() => loader.style.display = 'none', 600);
+                }
+            }, 700); // Show loader at least 700ms for effect
+        });
+    </script>
+    <div id="site-loader" aria-label="Loading">
+        <div class="logo-loader-container">
+            <img src="Vilma Tarra Real Estate.jpg" alt="Vilma Tarra Realty Logo" class="logo-loader-img" width="120" height="120" />
+            <span class="logo-loader-circle">
+                <svg class="logo-loader-svg" viewBox="0 0 150 150">
+                    <circle cx="75" cy="75" r="70"/>
+                </svg>
+            </span>
+        </div>
+    </div>
     
     <!-- Preload important resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" as="style">
@@ -1137,6 +1236,16 @@
             <i class="fas fa-bars"></i>
         </button>
     </header>
+    <script>
+    // Hamburger menu toggle for mobile navigation
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        const nav = document.getElementById('mainNav');
+        menuBtn.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+    });
+    </script>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
