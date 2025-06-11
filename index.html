@@ -1235,17 +1235,30 @@
         <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
             <i class="fas fa-bars"></i>
         </button>
-    </header>
-    <script>
-    // Hamburger menu toggle for mobile navigation
-    document.addEventListener('DOMContentLoaded', function() {
+        </header>
+        <script>
+        // Hamburger menu toggle for mobile navigation
+        document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobileMenuBtn');
         const nav = document.getElementById('mainNav');
+        const siteLoader = document.getElementById('site-loader');
+        // Toggle mobile menu
         menuBtn.addEventListener('click', function() {
             nav.classList.toggle('active');
         });
-    });
-    </script>
+        // Close mobile menu and loader animation when any nav link is clicked
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+            nav.classList.remove('active');
+            // Hide loader if visible
+            if (siteLoader && !siteLoader.classList.contains('hide')) {
+                siteLoader.classList.add('hide');
+                setTimeout(() => siteLoader.style.display = 'none', 600);
+            }
+            });
+        });
+        });
+        </script>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
